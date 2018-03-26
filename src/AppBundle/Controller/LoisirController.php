@@ -1,5 +1,6 @@
 <?php
 namespace AppBundle\Controller;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -7,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\LoisirType;
 use AppBundle\Entity\Loisirs;
+
 /**
  * @Route("/loisirs")
  */
@@ -32,7 +34,7 @@ class LoisirController extends Controller
     {
         $loisir = new Loisirs();
         $form = $this->createForm(LoisirType::class, $loisir);
-        $form->handleRequest($request); 
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $eManager = $this->getDoctrine()->getManager();
             $eManager->persist($loisir);
@@ -68,7 +70,7 @@ class LoisirController extends Controller
         $eManager = $this->getDoctrine()->getManager();
         $loisir = $eManager->getRepository("AppBundle:Loisirs")->FindOneBy(["id" => $id]);
         $form = $this->createForm(LoisirType::class, $loisir);
-        $form->handleRequest($request); 
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $eManager->persist($loisir);
             $eManager->flush();
@@ -85,7 +87,7 @@ class LoisirController extends Controller
     
     public function removeAction($id)
     {
-       $eManager=$this->getDoctrine()->getManager();
+        $eManager=$this->getDoctrine()->getManager();
         $loisir=$eManager->getRepository("AppBundle:Loisirs")->FindOneBy(["id"=>$id]);
         $eManager->remove($loisir);
         $eManager->flush();

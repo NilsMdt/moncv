@@ -1,5 +1,6 @@
 <?php
 namespace AppBundle\Entity;
+
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,7 +9,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="loisirs")
  * @ApiResource
  */
-class Loisirs {
+class Loisirs
+{
     
     
     
@@ -23,22 +25,21 @@ class Loisirs {
     * @ORM\Column(type="string")
     **/
     private $name;
-    function getId()
+    public function getId()
     {
         return $this->id;
     }
-    function getName()
+    public function getName()
     {
         return $this->name;
     }
    
-    function setId($id)
+    public function setId($id)
     {
         $this->id = $id;
     }
-    function setName($name)
+    public function setName($name)
     {
         $this->name = $name;
     }
-   
 }
