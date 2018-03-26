@@ -1,0 +1,49 @@
+[29-Jan-2018 15:16:21 UTC] PHP Fatal error:  Class 'Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle' not found in /home/ubuntu/workspace/app/AppKernel.php on line 18
+[29-Jan-2018 15:16:21 UTC] PHP Stack trace:
+[29-Jan-2018 15:16:21 UTC] PHP   1. {main}() /home/ubuntu/workspace/web/app.php:0
+[29-Jan-2018 15:16:21 UTC] PHP   2. Symfony\Component\HttpKernel\Kernel->handle() /home/ubuntu/workspace/web/app.php:19
+[29-Jan-2018 15:16:21 UTC] PHP   3. Symfony\Component\HttpKernel\Kernel->boot() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:197
+[29-Jan-2018 15:16:21 UTC] PHP   4. Symfony\Component\HttpKernel\Kernel->initializeBundles() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:134
+[29-Jan-2018 15:16:21 UTC] PHP   5. AppKernel->registerBundles() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:494
+[29-Jan-2018 15:16:25 UTC] PHP Warning:  require(/home/ubuntu/workspace/vendor/swiftmailer/swiftmailer/lib/swift_required.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/vendor/composer/autoload_real.php on line 66
+[29-Jan-2018 15:16:25 UTC] PHP Stack trace:
+[29-Jan-2018 15:16:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/web/app.php:0
+[29-Jan-2018 15:16:25 UTC] PHP   2. require() /home/ubuntu/workspace/web/app.php:5
+[29-Jan-2018 15:16:25 UTC] PHP   3. ComposerAutoloaderInit5c67107b289b5d5ab60690aa4e53d2b6::getLoader() /home/ubuntu/workspace/vendor/autoload.php:7
+[29-Jan-2018 15:16:25 UTC] PHP   4. composerRequire5c67107b289b5d5ab60690aa4e53d2b6() /home/ubuntu/workspace/vendor/composer/autoload_real.php:56
+[29-Jan-2018 15:16:25 UTC] PHP Fatal error:  require(): Failed opening required '/home/ubuntu/workspace/vendor/swiftmailer/swiftmailer/lib/swift_required.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/vendor/composer/autoload_real.php on line 66
+[29-Jan-2018 15:16:25 UTC] PHP Stack trace:
+[29-Jan-2018 15:16:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/web/app.php:0
+[29-Jan-2018 15:16:25 UTC] PHP   2. require() /home/ubuntu/workspace/web/app.php:5
+[29-Jan-2018 15:16:25 UTC] PHP   3. ComposerAutoloaderInit5c67107b289b5d5ab60690aa4e53d2b6::getLoader() /home/ubuntu/workspace/vendor/autoload.php:7
+[29-Jan-2018 15:16:25 UTC] PHP   4. composerRequire5c67107b289b5d5ab60690aa4e53d2b6() /home/ubuntu/workspace/vendor/composer/autoload_real.php:56
+[12-Feb-2018 07:48:03 UTC] PHP Fatal error:  Cannot redeclare AppBundle\Controller\DefaultController::indexAction() in /home/ubuntu/workspace/src/AppBundle/Controller/DefaultController.php on line 42
+[12-Feb-2018 07:48:03 UTC] PHP Stack trace:
+[12-Feb-2018 07:48:03 UTC] PHP   1. {main}() /home/ubuntu/workspace/web/app_dev.php:0
+[12-Feb-2018 07:48:03 UTC] PHP   2. Symfony\Component\HttpKernel\Kernel->handle() /home/ubuntu/workspace/web/app_dev.php:30
+[12-Feb-2018 07:48:03 UTC] PHP   3. Symfony\Component\HttpKernel\Kernel->boot() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:197
+[12-Feb-2018 07:48:03 UTC] PHP   4. Symfony\Component\HttpKernel\Kernel->initializeContainer() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:137
+[12-Feb-2018 07:48:03 UTC] PHP   5. Symfony\Component\Config\ConfigCache->isFresh() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:585
+[12-Feb-2018 07:48:03 UTC] PHP   6. Symfony\Component\Config\ResourceCheckerConfigCache->isFresh() /home/ubuntu/workspace/var/cache/dev/classes.php:2913
+[12-Feb-2018 07:48:03 UTC] PHP   7. Symfony\Component\Config\Resource\SelfCheckingResourceChecker->isFresh() /home/ubuntu/workspace/var/cache/dev/classes.php:2836
+[12-Feb-2018 07:48:03 UTC] PHP   8. Symfony\Component\Config\Resource\ReflectionClassResource->isFresh() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/Config/Resource/SelfCheckingResourceChecker.php:34
+[12-Feb-2018 07:48:03 UTC] PHP   9. Symfony\Component\Config\Resource\ReflectionClassResource->computeHash() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/Config/Resource/ReflectionClassResource.php:45
+[12-Feb-2018 07:48:03 UTC] PHP  10. ReflectionClass->__construct() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/Config/Resource/ReflectionClassResource.php:100
+[12-Feb-2018 07:48:03 UTC] PHP  11. spl_autoload_call() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/Config/Resource/ReflectionClassResource.php:100
+[12-Feb-2018 07:48:03 UTC] PHP  12. Symfony\Component\Debug\DebugClassLoader->loadClass() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/Config/Resource/ReflectionClassResource.php:100
+[12-Feb-2018 07:53:18 UTC] PHP Parse error:  syntax error, unexpected '}', expecting ';' or '{' in /home/ubuntu/workspace/src/AppBundle/Controller/DefaultController.php on line 50
+[12-Feb-2018 07:53:18 UTC] PHP Stack trace:
+[12-Feb-2018 07:53:18 UTC] PHP   1. {main}() /home/ubuntu/workspace/web/app_dev.php:0
+[12-Feb-2018 07:53:18 UTC] PHP   2. Symfony\Component\HttpKernel\Kernel->handle() /home/ubuntu/workspace/web/app_dev.php:30
+[12-Feb-2018 07:53:18 UTC] PHP   3. Symfony\Component\HttpKernel\Kernel->boot() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:197
+[12-Feb-2018 07:53:18 UTC] PHP   4. Symfony\Component\HttpKernel\Kernel->initializeContainer() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:137
+[12-Feb-2018 07:53:18 UTC] PHP   5. Symfony\Component\Config\ConfigCache->isFresh() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/HttpKernel/Kernel.php:585
+[12-Feb-2018 07:53:18 UTC] PHP   6. Symfony\Component\Config\ResourceCheckerConfigCache->isFresh() /home/ubuntu/workspace/var/cache/dev/classes.php:2913
+[12-Feb-2018 07:53:18 UTC] PHP   7. Symfony\Component\Config\Resource\SelfCheckingResourceChecker->isFresh() /home/ubuntu/workspace/var/cache/dev/classes.php:2836
+[12-Feb-2018 07:53:18 UTC] PHP   8. Symfony\Component\Config\Resource\ReflectionClassResource->isFresh() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/Config/Resource/SelfCheckingResourceChecker.php:34
+[12-Feb-2018 07:53:18 UTC] PHP   9. Symfony\Component\Config\Resource\ReflectionClassResource->computeHash() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/Config/Resource/ReflectionClassResource.php:45
+[12-Feb-2018 07:53:18 UTC] PHP  10. ReflectionClass->__construct() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/Config/Resource/ReflectionClassResource.php:100
+[12-Feb-2018 07:53:18 UTC] PHP  11. spl_autoload_call() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/Config/Resource/ReflectionClassResource.php:100
+[12-Feb-2018 07:53:18 UTC] PHP  12. Symfony\Component\Debug\DebugClassLoader->loadClass() /home/ubuntu/workspace/vendor/symfony/symfony/src/Symfony/Component/Config/Resource/ReflectionClassResource.php:100
+[12-Feb-2018 15:24:07 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/ubuntu/workspace/src/AppBundle/Form/LoisirType.php on line 3
+[12-Feb-2018 15:24:08 UTC] PHP Fatal error:  Namespace declaration statement has to be the very first statement or after any declare call in the script in /home/ubuntu/workspace/src/AppBundle/Form/LoisirType.php on line 3
