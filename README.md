@@ -2,7 +2,9 @@ Symfony Standard Edition
 ========================
 
 Ceci est mon CV en ligne ! 
-![Capture](/Capture2.JPG)
+![Capture](/Capture1.JPG)
+![Capture2](/Capture2.JPG)
+![Capture3](/Capture3.JPG)
 
 
 What's inside?
