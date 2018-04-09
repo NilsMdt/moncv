@@ -70,11 +70,22 @@ class ConfigurationTest extends TestCase
             ],
             'default_operation_path_resolver' => 'api_platform.operation_path_resolver.underscore',
             'path_segment_name_generator' => 'api_platform.path_segment_name_generator.underscore',
+            'validator' => [
+                'serialize_payload_fields' => [],
+            ],
             'name_converter' => null,
-            'enable_fos_user' => false,
+            'enable_fos_user' => true,
             'enable_nelmio_api_doc' => false,
             'enable_swagger' => true,
             'enable_swagger_ui' => true,
+            'enable_entrypoint' => true,
+            'enable_docs' => true,
+            'graphql' => [
+                'enabled' => true,
+                'graphiql' => [
+                    'enabled' => true,
+                ],
+            ],
             'oauth' => [
                 'enabled' => false,
                 'clientId' => '',
@@ -99,12 +110,15 @@ class ConfigurationTest extends TestCase
                 'order_parameter_name' => 'order',
                 'pagination' => [
                     'enabled' => true,
+                    'partial' => false,
                     'client_enabled' => false,
                     'client_items_per_page' => false,
+                    'client_partial' => false,
                     'items_per_page' => 30,
                     'page_parameter_name' => 'page',
                     'enabled_parameter_name' => 'pagination',
                     'items_per_page_parameter_name' => 'itemsPerPage',
+                    'partial_parameter_name' => 'partial',
                     'maximum_items_per_page' => null,
                 ],
             ],
@@ -119,12 +133,14 @@ class ConfigurationTest extends TestCase
                 'vary' => ['Accept'],
                 'public' => null,
             ],
+            'allow_plain_identifiers' => false,
+            'resource_class_directories' => [],
         ], $config);
     }
 
     /**
      * @group legacy
-     * @expectedDeprecation Using a string "HTTP_INTERNAL_SERVER_ERROR" as a constant of the "Symfony\Component\HttpFoundation\Response" class is deprecated since API Platform 2.1 and will not be possible anymore in API Platform 3. Use the Symfony's custom YAML extension for PHP constants instead (i.e. "!php/const Symfony\Component\HttpFoundation\Response::HTTP_INTERNAL_SERVER_ERROR").
+     * @expectedDeprecation Using a string "HTTP_INTERNAL_SERVER_ERROR" as a constant of the "Symfony\Component\HttpFoundation\Response" class is deprecated since API Platform 2.1 and will not be possible anymore in API Platform 3. Use the Symfony's custom YAML extension for PHP constants instead (i.e. "!php/const:Symfony\Component\HttpFoundation\Response::HTTP_INTERNAL_SERVER_ERROR").
      */
     public function testLegacyExceptionToStatusConfig()
     {

@@ -15,6 +15,10 @@ resources:
         subresourceOperations:
             my_collection_subresource:
                 path: 'the/subresource/path'
+        graphql:
+            query:
+                normalization_context:
+                    groups: ['graphql']
         attributes:
             normalization_context:
                 groups: ['default']
@@ -28,7 +32,7 @@ resources:
         iri: 'someirischema'
         properties:
             'foo':
-                subresource: {collection: true, resourceClass: 'Foo'}
+                subresource: {collection: true, resourceClass: 'Foo', maxDepth: 1}
                 description: 'The dummy foo'
                 readable: true
                 writable: true

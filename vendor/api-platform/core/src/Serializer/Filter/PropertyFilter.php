@@ -39,7 +39,15 @@ final class PropertyFilter implements FilterInterface
      */
     public function apply(Request $request, bool $normalization, array $attributes, array &$context)
     {
-        if (!\is_array($properties = $request->query->get($this->parameterName))) {
+        if (null !== $propertyAttribute = $request->attributes->get('_api_filter_property')) {
+            $properties = $propertyAttribute;
+        } elseif (array_key_exists($this->parameterName, $commonAttribute = $request->attributes->get('_api_filters', []))) {
+            $properties = $commonAttribute[$this->parameterName];
+        } else {
+            $properties = $request->query->get($this->parameterName);
+        }
+
+        if (!\is_array($properties)) {
             return;
         }
 
@@ -60,7 +68,7 @@ final class PropertyFilter implements FilterInterface
     public function getDescription(string $resourceClass): array
     {
         return [
-            $this->parameterName.'[]' => [
+            "$this->parameterName[]" => [
                 'property' => null,
                 'type' => 'string',
                 'required' => false,
@@ -105,7 +113,7 @@ final class PropertyFilter implements FilterInterface
                 continue;
             }
 
-            if (isset($whitelist[$key]) && \is_array($value) && $recursiveResult = $this->getProperties($value, $whitelist[$key])) {
+            if (\is_array($value) && isset($whitelist[$key]) && $recursiveResult = $this->getProperties($value, $whitelist[$key])) {
                 $result[$key] = $recursiveResult;
             }
         }

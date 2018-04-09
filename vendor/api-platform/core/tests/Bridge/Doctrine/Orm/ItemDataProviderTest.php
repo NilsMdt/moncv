@@ -58,6 +58,7 @@ class ItemDataProviderTest extends TestCase
         $queryBuilderProphecy->getQuery()->willReturn($queryProphecy->reveal())->shouldBeCalled();
         $queryBuilderProphecy->expr()->willReturn($exprProphecy->reveal())->shouldBeCalled();
         $queryBuilderProphecy->andWhere($comparison)->shouldBeCalled();
+        $queryBuilderProphecy->getRootAliases()->shouldBeCalled()->willReturn(['o']);
         $queryBuilderProphecy->setParameter(':id_id', 1, DBALType::INTEGER)->shouldBeCalled();
 
         $queryBuilder = $queryBuilderProphecy->reveal();
@@ -95,6 +96,7 @@ class ItemDataProviderTest extends TestCase
         $queryBuilderProphecy->getQuery()->willReturn($queryProphecy->reveal())->shouldBeCalled();
         $queryBuilderProphecy->expr()->willReturn($exprProphecy->reveal())->shouldBeCalled();
         $queryBuilderProphecy->andWhere($comparison)->shouldBeCalled();
+        $queryBuilderProphecy->getRootAliases()->shouldBeCalled()->willReturn(['o']);
 
         $queryBuilderProphecy->setParameter(':id_ida', 1, DBALType::INTEGER)->shouldBeCalled();
         $queryBuilderProphecy->setParameter(':id_idb', 2, DBALType::INTEGER)->shouldBeCalled();
@@ -155,6 +157,7 @@ class ItemDataProviderTest extends TestCase
         $queryBuilderProphecy = $this->prophesize(QueryBuilder::class);
         $queryBuilderProphecy->expr()->willReturn($exprProphecy->reveal())->shouldBeCalled();
         $queryBuilderProphecy->andWhere($comparison)->shouldBeCalled();
+        $queryBuilderProphecy->getRootAliases()->shouldBeCalled()->willReturn(['o']);
         $queryBuilderProphecy->setParameter(':id_id', 1, DBALType::INTEGER)->shouldBeCalled();
 
         $queryBuilder = $queryBuilderProphecy->reveal();
@@ -170,18 +173,15 @@ class ItemDataProviderTest extends TestCase
 
         $extensionProphecy = $this->prophesize(QueryResultItemExtensionInterface::class);
         $extensionProphecy->applyToItem($queryBuilder, Argument::type(QueryNameGeneratorInterface::class), Dummy::class, ['id' => 1], 'foo', [])->shouldBeCalled();
-        $extensionProphecy->supportsResult(Dummy::class, 'foo')->willReturn(true)->shouldBeCalled();
-        $extensionProphecy->getResult($queryBuilder)->willReturn([])->shouldBeCalled();
+        $extensionProphecy->supportsResult(Dummy::class, 'foo', [])->willReturn(true)->shouldBeCalled();
+        $extensionProphecy->getResult($queryBuilder, Dummy::class, 'foo', [])->willReturn([])->shouldBeCalled();
 
         $dataProvider = new ItemDataProvider($managerRegistry, $propertyNameCollectionFactory, $propertyMetadataFactory, [$extensionProphecy->reveal()]);
 
         $this->assertEquals([], $dataProvider->getItem(Dummy::class, 1, 'foo'));
     }
 
-    /**
-     * @expectedException \ApiPlatform\Core\Exception\ResourceClassNotSupportedException
-     */
-    public function testThrowResourceClassNotSupportedException()
+    public function testUnsupportedClass()
     {
         $managerRegistryProphecy = $this->prophesize(ManagerRegistry::class);
         $managerRegistryProphecy->getManagerForClass(Dummy::class)->willReturn(null)->shouldBeCalled();
@@ -193,7 +193,7 @@ class ItemDataProviderTest extends TestCase
         ]);
 
         $dataProvider = new ItemDataProvider($managerRegistryProphecy->reveal(), $propertyNameCollectionFactory, $propertyMetadataFactory, [$extensionProphecy->reveal()]);
-        $dataProvider->getItem(Dummy::class, 'foo');
+        $this->assertFalse($dataProvider->supports(Dummy::class, 'foo'));
     }
 
     /**

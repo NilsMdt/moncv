@@ -39,12 +39,20 @@ final class GroupFilter implements FilterInterface
      */
     public function apply(Request $request, bool $normalization, array $attributes, array &$context)
     {
-        if (!\is_array($groups = $request->query->get($this->parameterName))) {
+        if (array_key_exists($this->parameterName, $commonAttribute = $request->attributes->get('_api_filters', []))) {
+            $groups = $commonAttribute[$this->parameterName];
+        } else {
+            $groups = $request->query->get($this->parameterName);
+        }
+
+        if (!\is_array($groups)) {
             return;
         }
+
         if (null !== $this->whitelist) {
             $groups = array_intersect($this->whitelist, $groups);
         }
+
         if (!$this->overrideDefaultGroups && isset($context[AbstractNormalizer::GROUPS])) {
             $groups = array_merge((array) $context[AbstractNormalizer::GROUPS], $groups);
         }
@@ -58,7 +66,7 @@ final class GroupFilter implements FilterInterface
     public function getDescription(string $resourceClass): array
     {
         return [
-            $this->parameterName.'[]' => [
+            "$this->parameterName[]" => [
                 'property' => null,
                 'type' => 'string',
                 'required' => false,

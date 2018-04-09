@@ -1,5 +1,72 @@
 # Changelog
 
+## 2.2.5
+
+* Fix a various issues preventing the metadata cache to work properly (performance fix)
+* Fix a cache corruption issue when using subresources
+* Fix non-standard outputs when using the HAL format
+* Persist data in Doctrine DataPersister only if needed
+* Fix identifiers handling in GraphQL mutations
+* Fix client-side ID creation or update when using GraphQL mutations
+* Fix an error that was occuring when the Expression Language component wasn't installed
+* Update the `ChainSubresourceDataProvider` class to take into account `RestrictedDataProviderInterface`
+
+## 2.2.4
+
+* Fix a BC break preventing to pass non-arrays to the builtin Symfony normalizers when using custom normalizers
+* Fix a bug when using `FilterEagerLoadingExtension` with manual joins
+* Fix some bugs in the AWS API Gateway compatibility mode for Open API/Swagger
+
+## 2.2.3
+
+* Fix object state inconsistency after persistence
+* Allow to use multiple `@ApiFilter` annotations on the same class
+* Fix a BC break when the serialization context builder depends of the retrieved data
+* Fix a bug regarding collections handling in the GraphQL endpoint
+
+## 2.2.2
+
+* Autoregister classes implementing `SubresourceDataProviderInterface` 
+* Fix the `DateTimeImmutable` support in the date filter
+* Fix a BC break in `DocumentationAction` impacting NelmioApiDoc
+* Fix the context passed to data providers (improve the eager loading)
+* Fix fix a subresource's metadata cache bug
+* Fix the configuration detection when using a custom directory structure
+
+## 2.2.1
+
+* Merge bug fixes from older branches
+
+## 2.2.0
+
+* Add GraphQL support (including mutations, pagination, filters, access control rules and automatic SQL joins)
+* Fully implement the GraphQL Relay Server specification
+* Add JSONAPI support
+* Add a new `@ApiFilter` annotation to directly configure filters from resource classes
+* Add a partial paginator that prevents `COUNT()` SQL queries
+* Add a new simplified way to configure operations
+* Add an option to serialize Validator's payloads (e.g. error levels)
+* Add support for generators in data providers
+* Add a new `allow_plain_identifiers` option to allow using plain IDs as identifier instead of IRIs
+* Add support for resource names without namespace
+* Automatically enable FOSUser support if the bundle is installed
+* Add an `AbstractCollectionNormalizer` to help supporting custom formats
+* Deprecate NelmioApiDocBundle 2 support (upgrade to v3, it has native API Platform support)
+* Deprecate the `ApiPlatform\Core\Bridge\Doctrine\EventListener\WriteListener` class in favor of the new `ApiPlatform\Core\EventListener\WriteListener` class.
+* Remove the `api_platform.doctrine.listener.view.write` event listener service.
+* Add a data persistence layer with a new `ApiPlatform\Core\DataPersister\DataPersisterInterface` interface.
+* Add the a new configuration to disable the API entrypoint and the documentation
+* Allow to set maximum items per page at operation/resource level  
+* Add the ability to customize the message when configuring an access control rule trough the `access_control_message` attribute
+* Allow empty operations in XML configs 
+
+## 2.1.6
+
+* Add a new config option to specify the directories containing resource classes
+* Fix a bug regarding the ordering filter when dealing with embedded fields
+* Allow to autowire the router
+* Fix the base path handling the Swagger/Open API documentation normalizer
+
 ## 2.1.5
 
 * Add support for filters autoconfiguration with Symfony 3.4+
@@ -9,7 +76,7 @@
 * Fix the Doctrine query generated to retrieve nested subresources
 * Fix several bugs in the automatic eager loading support
 * Fix a bug occurring when passing nor an IRI nor an array in an embedded relation
-* Allow to pass request `0` items per page in collections
+* Allow to request `0` items per page in collections
 * Also copy the `Host` from the Symfony Router
 * `Paginator::getLastPage()` now always returns a `float`
 * Minor performance improvements

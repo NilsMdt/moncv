@@ -267,7 +267,7 @@ final class DocumentationNormalizer implements NormalizerInterface
         } elseif ('GET' === $method && OperationType::SUBRESOURCE === $operationType) {
             $hydraOperation += [
                 '@type' => ['hydra:Operation', 'schema:FindAction'],
-                'hydra:title' => $subresourceMetadata->isCollection() ? "Retrieves the collection of $shortName resources." : "Retrieves a $shortName resource.",
+                'hydra:title' => $subresourceMetadata && $subresourceMetadata->isCollection() ? "Retrieves the collection of $shortName resources." : "Retrieves a $shortName resource.",
                 'returns' => "#$shortName",
             ];
         } elseif ('GET' === $method) {
@@ -275,6 +275,13 @@ final class DocumentationNormalizer implements NormalizerInterface
                 '@type' => ['hydra:Operation', 'schema:FindAction'],
                 'hydra:title' => "Retrieves $shortName resource.",
                 'returns' => $prefixedShortName,
+            ];
+        } elseif ('PATCH' === $method) {
+            $hydraOperation += [
+                '@type' => 'hydra:Operation',
+                'hydra:title' => "Updates the $shortName resource.",
+                'returns' => $prefixedShortName,
+                'expects' => $prefixedShortName,
             ];
         } elseif ('POST' === $method) {
             $hydraOperation += [

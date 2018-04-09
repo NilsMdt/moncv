@@ -24,12 +24,19 @@ doctrine:
 api_platform:
     title:                             'My Dummy API'
     description:                       'This is a test API.'
+    allow_plain_identifiers:           true
     formats:
         jsonld:                        ['application/ld+json']
         jsonhal:                       ['application/hal+json']
+        jsonapi:                       ['application/vnd.api+json']
         xml:                           ['application/xml', 'text/xml']
         json:                          ['application/json']
         html:                          ['text/html']
+    error_formats:
+        jsonproblem:                   ['application/problem+json']
+        jsonld:                        ['application/ld+json']
+        jsonapi:                       ['application/vnd.api+json']
+    graphql:                           true
     name_converter:                    'app.name_converter'
     enable_fos_user:                   true
     collection:
@@ -38,8 +45,8 @@ api_platform:
         pagination:
             client_enabled:            true
             client_items_per_page:     true
+            client_partial:            true
             items_per_page:            3
-    enable_nelmio_api_doc: true
     exception_to_status:
         Symfony\Component\Serializer\Exception\ExceptionInterface: 400
         ApiPlatform\Core\Exception\InvalidArgumentException: 400
@@ -63,16 +70,6 @@ fos_user:
         address:      'no-reply@les-tilleuls.coop'
         sender_name:  'Kévin Dunglas'
 
-nelmio_api_doc:
-    sandbox:
-        accept_type:        'application/json'
-        body_format:
-            formats:        [ 'json' ]
-            default_format: 'json'
-        request_format:
-            formats:
-                json:       'application/json'
-
 parameters:
     container.autowiring.strict_mode: true
     container.dumper.inline_class_loader: true
@@ -83,6 +80,18 @@ services:
         public: false
         tags:
             -  { name: 'api_platform.item_data_provider' }
+
+    serializable.item_data_provider:
+        class: 'ApiPlatform\Core\Tests\Fixtures\TestBundle\DataProvider\SerializableItemDataProvider'
+        public: false
+        tags:
+            -  { name: 'api_platform.item_data_provider' }
+
+    app.serializer.denormalizer.serializable_resource:
+        class: 'ApiPlatform\Core\Tests\Fixtures\TestBundle\Serializer\Denormalizer\SerializableResourceDenormalizer'
+        public: false
+        tags:
+            -  { name: 'serializer.normalizer' }
 
     app.user_manager:
         class: 'ApiPlatform\Core\Tests\Fixtures\TestBundle\Manager\UserManager'
@@ -106,7 +115,7 @@ services:
     # Tests if the id default to the service name, do not add id attributes here
     my_dummy.order:
         parent:    'api_platform.doctrine.orm.order_filter'
-        arguments: [ { 'id': ~, 'name': 'desc', 'relatedDummy.name': ~, 'embeddedDummy.dummyName': 'desc', 'relatedDummy.symfony': ~ } ]
+        arguments: [ { 'id': ~, 'name': 'desc', 'description': ~, 'relatedDummy.name': ~, 'embeddedDummy.dummyName': 'desc', 'relatedDummy.symfony': ~, 'dummyDate': ~} ]
         tags:      [ { name: 'api_platform.filter', id: 'my_dummy.order' } ]
 
     app.my_dummy_resource.date_filter:
@@ -144,15 +153,14 @@ services:
         arguments: [ { 'description': ~, 'relatedDummy.name': ~, 'dummyBoolean': ~ } ]
         tags:      [ { name: 'api_platform.filter', id: 'my_dummy.exists' } ]
 
+    app.my_dummy_resource.property_filter:
+        parent:    'api_platform.serializer.property_filter'
+        tags:      [ { name: 'api_platform.filter', id: 'my_dummy.property' } ]
+
     app.config_dummy_resource.action:
         class: 'ApiPlatform\Core\Tests\Fixtures\TestBundle\Action\ConfigCustom'
         arguments: ['@api_platform.item_data_provider']
         public: true
-
-    app.entity.filter.dummy_car:
-        parent:    'api_platform.doctrine.orm.search_filter'
-        arguments: [ { 'colors.prop': 'ipartial' } ]
-        tags:      [ { name: 'api_platform.filter', id: 'dummy_car_colors.search_filter' } ]
 
     app.entity.filter.dummy_property.property:
         parent:    'api_platform.serializer.property_filter'
@@ -209,4 +217,8 @@ services:
 
     test.property_accessor:
         alias: property_accessor
+        public: true
+
+    test.annotation_reader:
+        alias: annotation_reader
         public: true

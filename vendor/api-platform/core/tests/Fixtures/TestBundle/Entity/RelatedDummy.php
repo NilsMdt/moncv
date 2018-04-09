@@ -153,6 +153,22 @@ class RelatedDummy extends ParentDummy
     }
 
     /**
+     * @return ThirdLevel|null
+     */
+    public function getThirdLevel()
+    {
+        return $this->thirdLevel;
+    }
+
+    /**
+     * @param ThirdLevel|null $thirdLevel
+     */
+    public function setThirdLevel(ThirdLevel $thirdLevel = null)
+    {
+        $this->thirdLevel = $thirdLevel;
+    }
+
+    /**
      * Get relatedToDummyFriend.
      *
      * @return RelatedToDummyFriend[]

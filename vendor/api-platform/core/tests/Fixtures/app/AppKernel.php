@@ -40,7 +40,7 @@ class AppKernel extends Kernel
 
     public function registerBundles(): array
     {
-        return [
+        $bundles = [
             new FrameworkBundle(),
             new TwigBundle(),
             new DoctrineBundle(),
@@ -48,19 +48,29 @@ class AppKernel extends Kernel
             new ApiPlatformBundle(),
             new SecurityBundle(),
             new FOSUserBundle(),
-            new NelmioApiDocBundle(),
             new TestBundle(),
         ];
+
+        if ($_SERVER['LEGACY'] ?? true) {
+            $bundles[] = new NelmioApiDocBundle();
+        }
+
+        return $bundles;
     }
 
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
         $routes->import('config/routing.yml');
+
+        if ($_SERVER['LEGACY'] ?? true) {
+            $routes->import('@NelmioApiDocBundle/Resources/config/routing.yml', '/nelmioapidoc');
+        }
     }
 
     protected function configureContainer(ContainerBuilder $c, LoaderInterface $loader)
     {
         $environment = $this->getEnvironment();
+        $c->setParameter('kernel.project_dir', __DIR__);
 
         // patch for behat not supporting %env(APP_ENV)% in older versions
         if (($appEnv = $_SERVER['APP_ENV'] ?? 'test') && $appEnv !== $environment) {
@@ -110,7 +120,22 @@ class AppKernel extends Kernel
         if (method_exists(ContextListener::class, 'setLogoutOnUserChange')) {
             $securityConfig['firewalls']['default']['logout_on_user_change'] = true;
         }
-
         $c->loadFromExtension('security', $securityConfig);
+
+        if ($_SERVER['LEGACY'] ?? true) {
+            $c->loadFromExtension('nelmio_api_doc', [
+                'sandbox' => [
+                    'accept_type' => 'application/json',
+                    'body_format' => [
+                        'formats' => ['json'],
+                        'default_format' => 'json',
+                    ],
+                    'request_format' => [
+                        'formats' => ['json' => 'application/json'],
+                    ],
+                ],
+            ]);
+            $c->loadFromExtension('api_platform', ['enable_nelmio_api_doc' => true]);
+        }
     }
 }

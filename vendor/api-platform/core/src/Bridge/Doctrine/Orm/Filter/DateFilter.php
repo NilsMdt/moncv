@@ -24,7 +24,7 @@ use Doctrine\ORM\QueryBuilder;
  * @author Kévin Dunglas <dunglas@gmail.com>
  * @author Théo FIDRY <theo.fidry@gmail.com>
  */
-class DateFilter extends AbstractFilter
+class DateFilter extends AbstractContextAwareFilter
 {
     const PARAMETER_BEFORE = 'before';
     const PARAMETER_STRICTLY_BEFORE = 'strictly_before';
@@ -85,7 +85,7 @@ class DateFilter extends AbstractFilter
             return;
         }
 
-        $alias = 'o';
+        $alias = $queryBuilder->getRootAliases()[0];
         $field = $property;
 
         if ($this->isPropertyNested($property, $resourceClass)) {
@@ -167,7 +167,7 @@ class DateFilter extends AbstractFilter
     protected function addWhere(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $alias, string $field, string $operator, string $value, string $nullManagement = null, $type = null)
     {
         try {
-            $value = false !== strpos('_immutable', $type) ? new \DateTime($value) : new \DateTimeImmutable($value);
+            $value = false === strpos($type, '_immutable') ? new \DateTime($value) : new \DateTimeImmutable($value);
         } catch (\Exception $e) {
             // Silently ignore this filter if it can not be transformed to a \DateTime
             $this->logger->notice('Invalid filter ignored', [

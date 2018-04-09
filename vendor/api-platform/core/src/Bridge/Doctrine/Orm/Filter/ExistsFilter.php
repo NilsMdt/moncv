@@ -30,7 +30,7 @@ use Doctrine\ORM\QueryBuilder;
  *
  * @author Teoh Han Hui <teohhanhui@gmail.com>
  */
-class ExistsFilter extends AbstractFilter
+class ExistsFilter extends AbstractContextAwareFilter
 {
     const QUERY_PARAMETER_KEY = 'exists';
 
@@ -92,7 +92,7 @@ class ExistsFilter extends AbstractFilter
             return;
         }
 
-        $alias = 'o';
+        $alias = $queryBuilder->getRootAliases()[0];
         $field = $property;
 
         if ($this->isPropertyNested($property, $resourceClass)) {

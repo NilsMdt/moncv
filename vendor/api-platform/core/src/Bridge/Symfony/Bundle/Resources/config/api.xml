@@ -37,9 +37,14 @@
             <argument>%api_platform.formats%</argument>
             <argument>%api_platform.resource_class_directories%</argument>
             <argument type="service" id="api_platform.subresource_operation_factory" />
+            <argument>%api_platform.graphql.enabled%</argument>
+            <argument>%api_platform.enable_entrypoint%</argument>
+            <argument>%api_platform.enable_docs%</argument>
 
             <tag name="routing.loader" />
         </service>
+
+        <service id="ApiPlatform\Core\Api\UrlGeneratorInterface" alias="api_platform.router" />
 
         <service id="api_platform.router" class="ApiPlatform\Core\Bridge\Symfony\Routing\Router" public="false">
             <argument type="service" id="router" />
@@ -81,6 +86,8 @@
             <argument type="service" id="api_platform.property_accessor" />
             <argument type="service" id="api_platform.name_converter" on-invalid="ignore" />
             <argument type="service" id="serializer.mapping.class_metadata_factory" on-invalid="ignore" />
+            <argument type="service" id="api_platform.item_data_provider" on-invalid="ignore" />
+            <argument>%api_platform.allow_plain_identifiers%</argument>
 
             <tag name="serializer.normalizer" />
         </service>
@@ -130,8 +137,15 @@
             <argument type="service" id="api_platform.collection_data_provider" />
             <argument type="service" id="api_platform.item_data_provider" />
             <argument type="service" id="api_platform.subresource_data_provider" />
+            <argument type="service" id="api_platform.serializer.context_builder" />
 
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="4" />
+        </service>
+
+        <service id="api_platform.listener.view.write" class="ApiPlatform\Core\EventListener\WriteListener">
+            <argument type="service" id="api_platform.data_persister" />
+
+            <tag name="kernel.event_listener" event="kernel.view" method="onKernelView" priority="32" />
         </service>
 
         <service id="api_platform.listener.request.deserialize" class="ApiPlatform\Core\EventListener\DeserializeListener">
@@ -174,6 +188,7 @@
         <service id="api_platform.action.get_collection" alias="api_platform.action.placeholder" public="true" />
         <service id="api_platform.action.post_collection" alias="api_platform.action.placeholder" public="true" />
         <service id="api_platform.action.get_item" alias="api_platform.action.placeholder" public="true" />
+        <service id="api_platform.action.patch_item" alias="api_platform.action.placeholder" public="true" />
         <service id="api_platform.action.put_item" alias="api_platform.action.placeholder" public="true" />
         <service id="api_platform.action.delete_item" alias="api_platform.action.placeholder" public="true" />
         <service id="api_platform.action.get_subresource" alias="api_platform.action.placeholder" public="true" />
@@ -202,12 +217,14 @@
             <argument type="service" id="api_platform.metadata.property.name_collection_factory" />
             <argument type="service" id="api_platform.metadata.property.metadata_factory" />
             <argument type="service" id="api_platform.property_accessor" />
+            <argument type="service" id="api_platform.resource_class_resolver" />
         </service>
 
         <service id="api_platform.identifiers_extractor.cached" class="ApiPlatform\Core\Api\CachedIdentifiersExtractor" decorates="api_platform.identifiers_extractor" public="false">
             <argument type="service" id="api_platform.cache.identifiers_extractor" />
             <argument type="service" id="api_platform.identifiers_extractor.cached.inner" />
             <argument type="service" id="api_platform.property_accessor" />
+            <argument type="service" id="api_platform.resource_class_resolver" />
         </service>
 
         <!-- Subresources -->

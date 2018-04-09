@@ -24,9 +24,14 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 /**
  * @author Amrouche Hamza <hamza.simperfit@gmail.com>
+ *
+ * @group legacy
  */
 class WriteListenerTest extends TestCase
 {
+    /**
+     * @expectedDeprecation The ApiPlatform\Core\Bridge\Doctrine\EventListener\WriteListener class is deprecated since version 2.2 and will be removed in 3.0. Use the ApiPlatform\Core\EventListener\WriteListener class instead.
+     */
     public function testOnKernelViewWithControllerResultAndPostMethod()
     {
         $dummy = new Dummy();
@@ -41,7 +46,7 @@ class WriteListenerTest extends TestCase
         $writeListener = new WriteListener($managerRegistryProphecy->reveal());
         $httpKernelProphecy = $this->prophesize(HttpKernelInterface::class);
         $request = new Request();
-        $request->setMethod(Request::METHOD_POST);
+        $request->setMethod('POST');
         $request->attributes->set('_api_resource_class', 'Dummy');
         $event = new GetResponseForControllerResultEvent($httpKernelProphecy->reveal(), $request, HttpKernelInterface::MASTER_REQUEST, $dummy);
 
@@ -49,6 +54,9 @@ class WriteListenerTest extends TestCase
         $this->assertNotEquals($dummy, $writeListener->onKernelView($event));
     }
 
+    /**
+     * @expectedDeprecation The ApiPlatform\Core\Bridge\Doctrine\EventListener\WriteListener class is deprecated since version 2.2 and will be removed in 3.0. Use the ApiPlatform\Core\EventListener\WriteListener class instead.
+     */
     public function testOnKernelViewWithControllerResultAndDeleteMethod()
     {
         $dummy = new Dummy();
@@ -62,7 +70,7 @@ class WriteListenerTest extends TestCase
 
         $writeListener = new WriteListener($managerRegistryProphecy->reveal());
         $request = new Request();
-        $request->setMethod(Request::METHOD_DELETE);
+        $request->setMethod('DELETE');
         $request->attributes->set('_api_resource_class', 'Dummy');
         $event = $this->prophesize(GetResponseForControllerResultEvent::class);
         $event->setControllerResult(null)->shouldBeCalled();
@@ -72,6 +80,9 @@ class WriteListenerTest extends TestCase
         $this->assertNotEquals($dummy, $writeListener->onKernelView($event->reveal()));
     }
 
+    /**
+     * @expectedDeprecation The ApiPlatform\Core\Bridge\Doctrine\EventListener\WriteListener class is deprecated since version 2.2 and will be removed in 3.0. Use the ApiPlatform\Core\EventListener\WriteListener class instead.
+     */
     public function testOnKernelViewWithSafeMethod()
     {
         $dummy = new Dummy();
@@ -82,13 +93,16 @@ class WriteListenerTest extends TestCase
         $writeListener = new WriteListener($managerRegistryProphecy->reveal());
         $httpKernelProphecy = $this->prophesize(HttpKernelInterface::class);
         $request = new Request();
-        $request->setMethod(Request::METHOD_HEAD);
+        $request->setMethod('HEAD');
         $event = new GetResponseForControllerResultEvent($httpKernelProphecy->reveal(), $request, HttpKernelInterface::MASTER_REQUEST, $dummy);
 
         $this->assertNull($writeListener->onKernelView($event));
         $this->assertNotEquals($dummy, $writeListener->onKernelView($event));
     }
 
+    /**
+     * @expectedDeprecation The ApiPlatform\Core\Bridge\Doctrine\EventListener\WriteListener class is deprecated since version 2.2 and will be removed in 3.0. Use the ApiPlatform\Core\EventListener\WriteListener class instead.
+     */
     public function testOnKernelViewWithNoResourceClass()
     {
         $dummy = new Dummy();
@@ -99,13 +113,16 @@ class WriteListenerTest extends TestCase
         $writeListener = new WriteListener($managerRegistryProphecy->reveal());
         $httpKernelProphecy = $this->prophesize(HttpKernelInterface::class);
         $request = new Request();
-        $request->setMethod(Request::METHOD_POST);
+        $request->setMethod('POST');
         $event = new GetResponseForControllerResultEvent($httpKernelProphecy->reveal(), $request, HttpKernelInterface::MASTER_REQUEST, $dummy);
 
         $this->assertNull($writeListener->onKernelView($event));
         $this->assertNotEquals($dummy, $writeListener->onKernelView($event));
     }
 
+    /**
+     * @expectedDeprecation The ApiPlatform\Core\Bridge\Doctrine\EventListener\WriteListener class is deprecated since version 2.2 and will be removed in 3.0. Use the ApiPlatform\Core\EventListener\WriteListener class instead.
+     */
     public function testOnKernelViewWithNoManager()
     {
         $dummy = new Dummy();
@@ -117,7 +134,7 @@ class WriteListenerTest extends TestCase
         $writeListener = new WriteListener($managerRegistryProphecy->reveal());
         $httpKernelProphecy = $this->prophesize(HttpKernelInterface::class);
         $request = new Request();
-        $request->setMethod(Request::METHOD_DELETE);
+        $request->setMethod('DELETE');
         $request->attributes->set('_api_resource_class', 'Dummy');
         $event = new GetResponseForControllerResultEvent($httpKernelProphecy->reveal(), $request, HttpKernelInterface::MASTER_REQUEST, $dummy);
 

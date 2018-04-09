@@ -16,13 +16,15 @@ namespace ApiPlatform\Core\Bridge\Symfony\Validator\EventListener;
 use ApiPlatform\Core\Bridge\Symfony\Validator\Exception\ValidationException;
 use ApiPlatform\Core\Metadata\Resource\Factory\ResourceMetadataFactoryInterface;
 use ApiPlatform\Core\Util\RequestAttributesExtractor;
+use ApiPlatform\Core\Validator\EventListener\ValidateListener as MainValidateListener;
 use Psr\Container\ContainerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Validates data.
+ *
+ * @deprecated
  *
  * @author Kévin Dunglas <dunglas@gmail.com>
  */
@@ -34,6 +36,8 @@ final class ValidateListener
 
     public function __construct(ValidatorInterface $validator, ResourceMetadataFactoryInterface $resourceMetadataFactory, ContainerInterface $container = null)
     {
+        @trigger_error(sprintf('Using "%s" is deprecated since API Platform 2.2 and will not be possible anymore in API Platform 3. Use "%s" instead.', __CLASS__, MainValidateListener::class), E_USER_DEPRECATED);
+
         $this->validator = $validator;
         $this->resourceMetadataFactory = $resourceMetadataFactory;
         $this->container = $container;
@@ -51,7 +55,7 @@ final class ValidateListener
         $request = $event->getRequest();
         if (
             $request->isMethodSafe(false)
-            || $request->isMethod(Request::METHOD_DELETE)
+            || $request->isMethod('DELETE')
             || !($attributes = RequestAttributesExtractor::extractAttributes($request))
             || !$attributes['receive']
         ) {
@@ -61,11 +65,7 @@ final class ValidateListener
         $data = $event->getControllerResult();
         $resourceMetadata = $this->resourceMetadataFactory->create($attributes['resource_class']);
 
-        if (isset($attributes['collection_operation_name'])) {
-            $validationGroups = $resourceMetadata->getCollectionOperationAttribute($attributes['collection_operation_name'], 'validation_groups');
-        } else {
-            $validationGroups = $resourceMetadata->getItemOperationAttribute($attributes['item_operation_name'], 'validation_groups');
-        }
+        $validationGroups = $resourceMetadata->getOperationAttribute($attributes, 'validation_groups');
 
         if (!$validationGroups) {
             // Fallback to the resource

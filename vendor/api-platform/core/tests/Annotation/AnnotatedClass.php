@@ -20,9 +20,10 @@ use ApiPlatform\Core\Annotation\ApiResource;
  *     shortName="shortName",
  *     description="description",
  *     iri="http://example.com/res",
- *     itemOperations={"foo":{"bar"}},
- *     collectionOperations={"bar":{"foo"}},
- *     attributes={"foo":"bar"}
+ *     itemOperations={"foo"={"bar"}},
+ *     collectionOperations={"bar"={"foo"}},
+ *     graphql={"query"={"normalization_context"={"groups"={"foo", "bar"}}}},
+ *     attributes={"foo"="bar"}
  * )
  *
  * @author Marcus Speight <marcus@pmconnect.co.uk>

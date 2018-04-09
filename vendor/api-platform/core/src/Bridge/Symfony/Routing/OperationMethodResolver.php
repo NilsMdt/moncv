@@ -89,21 +89,14 @@ final class OperationMethodResolver implements OperationMethodResolverInterface
         }
 
         if (null !== $method) {
-            return $method;
+            return strtoupper($method);
         }
 
         if (null === $routeName = $this->getRouteName($resourceMetadata, $operationName, $operationType)) {
             throw new RuntimeException(sprintf('Either a "route_name" or a "method" operation attribute must exist for the operation "%s" of the resource "%s".', $operationName, $resourceClass));
         }
 
-        $route = $this->getRoute($routeName);
-        $methods = $route->getMethods();
-
-        if (empty($methods)) {
-            return 'GET';
-        }
-
-        return $methods[0];
+        return $this->getRoute($routeName)->getMethods()[0] ?? 'GET';
     }
 
     /**

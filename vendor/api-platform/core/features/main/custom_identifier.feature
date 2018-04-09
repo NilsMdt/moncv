@@ -92,7 +92,7 @@ Feature: Using custom identifier on resource
     Then the response status code should be 200
     And the response should be in JSON
     And the Hydra class "CustomIdentifierDummy" exists
-    And 3 operations are available for Hydra class "CustomIdentifierDummy"
+    And 4 operations are available for Hydra class "CustomIdentifierDummy"
     And 1 properties are available for Hydra class "CustomIdentifierDummy"
     And "name" property is readable for Hydra class "CustomIdentifierDummy"
     And "name" property is writable for Hydra class "CustomIdentifierDummy"

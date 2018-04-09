@@ -16,6 +16,7 @@ namespace ApiPlatform\Core\Bridge\Doctrine\Orm\Extension;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\EagerLoadingTrait;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryBuilderHelper;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
+use ApiPlatform\Core\Exception\InvalidArgumentException;
 use ApiPlatform\Core\Metadata\Resource\Factory\ResourceMetadataFactoryInterface;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\ORM\QueryBuilder;
@@ -24,7 +25,7 @@ use Doctrine\ORM\QueryBuilder;
  * Fixes filters on OneToMany associations
  * https://github.com/api-platform/core/issues/944.
  */
-final class FilterEagerLoadingExtension implements QueryCollectionExtensionInterface
+final class FilterEagerLoadingExtension implements ContextAwareQueryCollectionExtensionInterface
 {
     use EagerLoadingTrait;
 
@@ -37,8 +38,12 @@ final class FilterEagerLoadingExtension implements QueryCollectionExtensionInter
     /**
      * {@inheritdoc}
      */
-    public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass, string $operationName = null)
+    public function applyToCollection(QueryBuilder $queryBuilder, QueryNameGeneratorInterface $queryNameGenerator, string $resourceClass = null, string $operationName = null, array $context = [])
     {
+        if (null === $resourceClass) {
+            throw new InvalidArgumentException('The "$resourceClass" parameter must not be null');
+        }
+
         $em = $queryBuilder->getEntityManager();
         $classMetadata = $em->getClassMetadata($resourceClass);
 
@@ -54,7 +59,7 @@ final class FilterEagerLoadingExtension implements QueryCollectionExtensionInter
         }
 
         $joinParts = $queryBuilder->getDQLPart('join');
-        $originAlias = 'o';
+        $originAlias = $queryBuilder->getRootAliases()[0];
 
         if (!$joinParts || !isset($joinParts[$originAlias])) {
             return;
@@ -133,7 +138,7 @@ final class FilterEagerLoadingExtension implements QueryCollectionExtensionInter
             $alias = substr($joinString, 0, $pos);
             $association = substr($joinString, $pos + 1);
             $condition = str_replace($aliases, $replacements, $joinPart->getCondition());
-            $newAlias = QueryBuilderHelper::addJoinOnce($queryBuilderClone, $queryNameGenerator, $alias, $association, $joinPart->getJoinType(), $joinPart->getConditionType(), $condition);
+            $newAlias = QueryBuilderHelper::addJoinOnce($queryBuilderClone, $queryNameGenerator, $alias, $association, $joinPart->getJoinType(), $joinPart->getConditionType(), $condition, $originAlias);
             $aliases[] = "{$joinPart->getAlias()}.";
             $replacements[] = "$newAlias.";
         }
