@@ -92,20 +92,20 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
                     <div class=\"row\">
                         <div class=\"col-md-3\">
                             <div class=\"personal-details\">
-                                <strong>OCTOBER 17, 1996</strong>
-                                <small>BIRTH</small>
+                                <strong>31 MARS 1998</strong>
+                                <small>NAISSANCE</small>
                             </div>
                         </div>
                         <div class=\"col-md-3\">
                             <div class=\"personal-details\">
-                                <strong>UNITED KINGDOM</strong>
-                                <small>NATIONALITY</small>
+                                <strong>FRANCE</strong>
+                                <small>NATIONALITÉ</small>
                             </div>
                         </div>
                         <div class=\"col-md-6\">
                             <div class=\"personal-details\">
-                                <strong>ENGLISH <span>(NATIVE)</span>, FRENCH <span>(INTERMEDIATE)</span></strong>
-                                <small>LANGUAGE</small>
+                                <strong>FRANCAIS <span> </span>, ANGLAIS <span>B2</span></strong>
+                                <small>LANGUES</small>
                             </div>
                         </div>
                     </div>
@@ -854,20 +854,20 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
                     <div class=\"row\">
                         <div class=\"col-md-3\">
                             <div class=\"personal-details\">
-                                <strong>OCTOBER 17, 1996</strong>
-                                <small>BIRTH</small>
+                                <strong>31 MARS 1998</strong>
+                                <small>NAISSANCE</small>
                             </div>
                         </div>
                         <div class=\"col-md-3\">
                             <div class=\"personal-details\">
-                                <strong>UNITED KINGDOM</strong>
-                                <small>NATIONALITY</small>
+                                <strong>FRANCE</strong>
+                                <small>NATIONALITÉ</small>
                             </div>
                         </div>
                         <div class=\"col-md-6\">
                             <div class=\"personal-details\">
-                                <strong>ENGLISH <span>(NATIVE)</span>, FRENCH <span>(INTERMEDIATE)</span></strong>
-                                <small>LANGUAGE</small>
+                                <strong>FRANCAIS <span> </span>, ANGLAIS <span>B2</span></strong>
+                                <small>LANGUES</small>
                             </div>
                         </div>
                     </div>
