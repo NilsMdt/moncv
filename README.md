@@ -18,7 +18,7 @@ The Symfony Standard Edition is configured with the following defaults:
 
   * Doctrine ORM/DBAL;
 
-  * Swiftmailerr;
+  * Swiftmailer;
 
   * Annotations enabled for everything.
 
