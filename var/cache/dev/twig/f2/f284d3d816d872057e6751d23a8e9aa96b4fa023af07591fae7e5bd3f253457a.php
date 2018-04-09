@@ -399,58 +399,64 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
     <section class=\"section-wrapper section-experience\">
         <div class=\"container\">
             <div class=\"row\">
+                
                 <div class=\"col-md-3\">
                     <div class=\"section-title\"><h2>Experiences</h2></div>
+                    <a href=\"";
+        // line 348
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("create_experience");
+        echo "\">Ajouter une experience</a>
                 </div>
                 <div class=\"col-md-9\">
-                    <div class=\"row\">
+                    ";
+        // line 351
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["Experiences"]) || array_key_exists("Experiences", $context) ? $context["Experiences"] : (function () { throw new Twig_Error_Runtime('Variable "Experiences" does not exist.', 351, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["exp"]) {
+            // line 352
+            echo "                    <div class=\"profile-item\">
+                                <div class=\"media\">
+                       <div class=\"row\">
                         <div class=\"col-md-6\">
-                            <div class=\"content-item\">
-                                <small>2015 - Present</small>
-                                <h3>Senior Developer</h3>
-                                <h4>Computer & Motor Ltd.</h4>
+                            <a href=\"";
+            // line 356
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("edit_experience", array("id" => twig_get_attribute($this->env, $this->source, $context["exp"], "id", array()))), "html", null, true);
+            echo "\">Modifier</a> |
+                                    <a href=\"";
+            // line 357
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("remove_experience", array("id" => twig_get_attribute($this->env, $this->source, $context["exp"], "id", array()))), "html", null, true);
+            echo "\">Supprimer</a>
+                                <div class=\"content-item\">
+                                    <small>";
+            // line 359
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["exp"], "getDateDebut", array(), "method"), "Y-M"), "html", null, true);
+            echo " - ";
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["exp"], "getDateFin", array(), "method"), "Y-M"), "html", null, true);
+            echo "</small>
+                                    <h3>";
+            // line 360
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["exp"], "getName", array(), "method"), "html", null, true);
+            echo "</h3>
+                                    <h4>";
+            // line 361
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["exp"], "getLieu", array(), "method"), "html", null, true);
+            echo "</h4>
+                                    
 
-                                <p>United Kingdom, London</p>
-                            </div>
-                            
-                         
-                            
-                            <!-- .experience-item -->
-
-                        </div>
-                        <div class=\"col-md-6\">
-                            <div class=\"content-item\">
-                                <small>2012 - 2015</small>
-                                <h3>Webdesigner</h3>
-                                <h4>BizzNiss</h4>
-
-                                <p>United Kingdom, London</p>
-                            </div>
-                            <!-- .experience-item -->
-                        </div>
-                    </div>
-                    <div class=\"row\">
-
-                        <div class=\"col-md-6\">
-                            <div class=\"content-item\">
-                                <small>2012 - 2015</small>
-                                <h3>Web Developer</h3>
-                                <h4>Unique Soft</h4>
-
-                                <p>United Kingdom, London</p>
-                            </div>
-                            <!-- .experience-item -->
-                        </div>
-                        <div class=\"col-md-6\">
-                            <div class=\"content-item\">
-                                <small>2010 - 2012</small>
-                                <h3>Front-end Developer</h3>
-                                <h4>Somsom LLC</h4>
-
-                                <p>United Kingdom, London</p>
-                            </div>
-                            <!-- .experience-item -->
-                        </div>
+                                    <p></p>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['exp'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 371
+        echo "                 
+                           
                     </div>
                 </div>
                 <!--.row-->
@@ -465,42 +471,59 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
             <div class=\"row\">
                 <div class=\"col-md-3\">
                     <div class=\"section-title\"><h2>Formations</h2></div>
+                     <a href=\"";
+        // line 387
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("create_formation");
+        echo "\">Ajouter une formation</a>
                 </div>
 
                  <div class=\"col-md-9\">
                     <div class=\"row\">
                         <div class=\"col-md-12\">
                             ";
-        // line 416
+        // line 393
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["Formations"]) || array_key_exists("Formations", $context) ? $context["Formations"] : (function () { throw new Twig_Error_Runtime('Variable "Formations" does not exist.', 416, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["Formations"]) || array_key_exists("Formations", $context) ? $context["Formations"] : (function () { throw new Twig_Error_Runtime('Variable "Formations" does not exist.', 393, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["formation"]) {
-            // line 417
-            echo "                                <div class=\"content-item\">
+            // line 394
+            echo "                            <div class=\"content-item\">
+                                    <div class=\"profile-item\">
+                             <a href=\"";
+            // line 396
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("edit_formation", array("id" => twig_get_attribute($this->env, $this->source, $context["formation"], "id", array()))), "html", null, true);
+            echo "\">Modifier</a> |
+                                    <a href=\"";
+            // line 397
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("remove_formation", array("id" => twig_get_attribute($this->env, $this->source, $context["formation"], "id", array()))), "html", null, true);
+            echo "\">Supprimer</a>
+                                
+                                <div class=\"media\">
+                                    
                                     <small>";
-            // line 418
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["formation"], "getDateDebut", array(), "method"), "Y"), "html", null, true);
+            // line 401
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["formation"], "getDateDebut", array(), "method"), "Y-M"), "html", null, true);
             echo " - ";
-            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["formation"], "getDateFin", array(), "method"), "Y"), "html", null, true);
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->env, twig_get_attribute($this->env, $this->source, $context["formation"], "getDateFin", array(), "method"), "Y-M"), "html", null, true);
             echo "</small>
                                     <h3>";
-            // line 419
+            // line 402
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["formation"], "getName", array(), "method"), "html", null, true);
             echo "</h3>
                                     <h4>";
-            // line 420
+            // line 403
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["formation"], "getLieu", array(), "method"), "html", null, true);
             echo "</h4>
                                     
-
-                                    <p></p>
+                                  
+                                </div>
+                                </div>
                                 </div>
                             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['formation'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 426
+        // line 410
         echo "                            <!-- .experience-item -->
                            
                             <!-- .experience-item -->
@@ -522,7 +545,7 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
                 <div class=\"col-md-3\">
                     <div class=\"section-title\"><h2>Loisirs</h2></div>
                     <a href=\"";
-        // line 446
+        // line 430
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("create_loisir");
         echo "\">Ajouter un loisir</a>
                     
@@ -532,32 +555,32 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
                     <div class=\"row\">
                         <div class=\"col-md-6\">
                              ";
-        // line 453
+        // line 437
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["Loisirs"]) || array_key_exists("Loisirs", $context) ? $context["Loisirs"] : (function () { throw new Twig_Error_Runtime('Variable "Loisirs" does not exist.', 453, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["Loisirs"]) || array_key_exists("Loisirs", $context) ? $context["Loisirs"] : (function () { throw new Twig_Error_Runtime('Variable "Loisirs" does not exist.', 437, $this->source); })()));
         foreach ($context['_seq'] as $context["_key"] => $context["loisir"]) {
-            // line 454
+            // line 438
             echo "                            <div class=\"profile-item\">
                                 <div class=\"media\">
                                     <a href=\"";
-            // line 456
+            // line 440
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("edit_loisir", array("id" => twig_get_attribute($this->env, $this->source, $context["loisir"], "id", array()))), "html", null, true);
             echo "\">Modifier</a> |
                                     <a href=\"";
-            // line 457
+            // line 441
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("remove_loisir", array("id" => twig_get_attribute($this->env, $this->source, $context["loisir"], "id", array()))), "html", null, true);
             echo "\">Supprimer</a>
                                     <div class=\"media-left\">
                                         <a href=\"#\">
                                             <img class=\"media-object\" src=\"";
-            // line 460
+            // line 444
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("template/img/m-logo-studio.png"), "html", null, true);
             echo "\" alt=\"...\">
                                         </a>
                                     </div>
                                     <div class=\"media-body\">
                                         <h3>";
-            // line 464
+            // line 448
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["loisir"], "getName", array(), "method"), "html", null, true);
             echo "</h3>
                                     </div>
@@ -568,7 +591,7 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['loisir'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 469
+        // line 453
         echo "                        </div>
                     </div>
                     <!--.row-->
@@ -596,7 +619,7 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
                             <a class=\"portfolio-item\" href=\"#\">
                                 <div class=\"portfolio-thumb\">
                                     <img src=\"";
-        // line 495
+        // line 479
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("template/img/portfolio-1.jpg"), "html", null, true);
         echo "\" alt=\"\">
                                 </div>
@@ -613,7 +636,7 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
                             <a class=\"portfolio-item\" href=\"#\">
                                 <div class=\"portfolio-thumb\">
                                     <img src=\"";
-        // line 509
+        // line 493
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("template/img/portfolio-2.jpg"), "html", null, true);
         echo "\" alt=\"\">
                                 </div>
@@ -630,7 +653,7 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
                             <a class=\"portfolio-item\" href=\"#\">
                                 <div class=\"portfolio-thumb\">
                                     <img src=\"";
-        // line 523
+        // line 507
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("template/img/portfolio-3.jpg"), "html", null, true);
         echo "\" alt=\"\">
                                 </div>
@@ -647,7 +670,7 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
                             <a class=\"portfolio-item\" href=\"#\">
                                 <div class=\"portfolio-thumb\">
                                     <img src=\"";
-        // line 537
+        // line 521
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("template/img/portfolio-4.jpg"), "html", null, true);
         echo "\" alt=\"\">
                                 </div>
@@ -664,7 +687,7 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
                             <a class=\"portfolio-item\" href=\"#\">
                                 <div class=\"portfolio-thumb\">
                                     <img src=\"";
-        // line 551
+        // line 535
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("template/img/portfolio-5.jpg"), "html", null, true);
         echo "\" alt=\"\">
                                 </div>
@@ -681,7 +704,7 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
                             <a class=\"portfolio-item\" href=\"#\">
                                 <div class=\"portfolio-thumb\">
                                     <img src=\"";
-        // line 565
+        // line 549
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("template/img/portfolio-6.jpg"), "html", null, true);
         echo "\" alt=\"\">
                                 </div>
@@ -812,7 +835,7 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
 
     public function getDebugInfo()
     {
-        return array (  685 => 565,  668 => 551,  651 => 537,  634 => 523,  617 => 509,  600 => 495,  572 => 469,  561 => 464,  554 => 460,  548 => 457,  544 => 456,  540 => 454,  536 => 453,  526 => 446,  504 => 426,  492 => 420,  488 => 419,  482 => 418,  479 => 417,  475 => 416,  77 => 23,  68 => 17,  53 => 4,  44 => 3,  15 => 1,);
+        return array (  708 => 549,  691 => 535,  674 => 521,  657 => 507,  640 => 493,  623 => 479,  595 => 453,  584 => 448,  577 => 444,  571 => 441,  567 => 440,  563 => 438,  559 => 437,  549 => 430,  527 => 410,  514 => 403,  510 => 402,  504 => 401,  497 => 397,  493 => 396,  489 => 394,  485 => 393,  476 => 387,  458 => 371,  442 => 361,  438 => 360,  432 => 359,  427 => 357,  423 => 356,  417 => 352,  413 => 351,  407 => 348,  77 => 23,  68 => 17,  53 => 4,  44 => 3,  15 => 1,);
     }
 
     public function getSourceContext()
@@ -1161,58 +1184,34 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
     <section class=\"section-wrapper section-experience\">
         <div class=\"container\">
             <div class=\"row\">
+                
                 <div class=\"col-md-3\">
                     <div class=\"section-title\"><h2>Experiences</h2></div>
+                    <a href=\"{{path('create_experience')}}\">Ajouter une experience</a>
                 </div>
                 <div class=\"col-md-9\">
-                    <div class=\"row\">
+                    {% for exp in Experiences %}
+                    <div class=\"profile-item\">
+                                <div class=\"media\">
+                       <div class=\"row\">
                         <div class=\"col-md-6\">
-                            <div class=\"content-item\">
-                                <small>2015 - Present</small>
-                                <h3>Senior Developer</h3>
-                                <h4>Computer & Motor Ltd.</h4>
+                            <a href=\"{{path('edit_experience', {'id': exp.id })}}\">Modifier</a> |
+                                    <a href=\"{{path('remove_experience', {'id': exp.id })}}\">Supprimer</a>
+                                <div class=\"content-item\">
+                                    <small>{{ exp.getDateDebut()|date(\"Y-M\") }} - {{ exp.getDateFin()|date(\"Y-M\") }}</small>
+                                    <h3>{{ exp.getName() }}</h3>
+                                    <h4>{{ exp.getLieu() }}</h4>
+                                    
 
-                                <p>United Kingdom, London</p>
-                            </div>
-                            
-                         
-                            
-                            <!-- .experience-item -->
-
-                        </div>
-                        <div class=\"col-md-6\">
-                            <div class=\"content-item\">
-                                <small>2012 - 2015</small>
-                                <h3>Webdesigner</h3>
-                                <h4>BizzNiss</h4>
-
-                                <p>United Kingdom, London</p>
-                            </div>
-                            <!-- .experience-item -->
-                        </div>
-                    </div>
-                    <div class=\"row\">
-
-                        <div class=\"col-md-6\">
-                            <div class=\"content-item\">
-                                <small>2012 - 2015</small>
-                                <h3>Web Developer</h3>
-                                <h4>Unique Soft</h4>
-
-                                <p>United Kingdom, London</p>
-                            </div>
-                            <!-- .experience-item -->
-                        </div>
-                        <div class=\"col-md-6\">
-                            <div class=\"content-item\">
-                                <small>2010 - 2012</small>
-                                <h3>Front-end Developer</h3>
-                                <h4>Somsom LLC</h4>
-
-                                <p>United Kingdom, London</p>
-                            </div>
-                            <!-- .experience-item -->
-                        </div>
+                                    <p></p>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                            {% endfor %}
+                 
+                           
                     </div>
                 </div>
                 <!--.row-->
@@ -1227,19 +1226,27 @@ class __TwigTemplate_5bd696753cd2a18421ad55344976fc15262bb3490b710fe47f6049b3c85
             <div class=\"row\">
                 <div class=\"col-md-3\">
                     <div class=\"section-title\"><h2>Formations</h2></div>
+                     <a href=\"{{path('create_formation')}}\">Ajouter une formation</a>
                 </div>
 
                  <div class=\"col-md-9\">
                     <div class=\"row\">
                         <div class=\"col-md-12\">
                             {% for formation in Formations %}
-                                <div class=\"content-item\">
-                                    <small>{{ formation.getDateDebut()|date(\"Y\") }} - {{ formation.getDateFin()|date(\"Y\") }}</small>
+                            <div class=\"content-item\">
+                                    <div class=\"profile-item\">
+                             <a href=\"{{path('edit_formation', {'id': formation.id })}}\">Modifier</a> |
+                                    <a href=\"{{path('remove_formation', {'id': formation.id })}}\">Supprimer</a>
+                                
+                                <div class=\"media\">
+                                    
+                                    <small>{{ formation.getDateDebut()|date(\"Y-M\") }} - {{ formation.getDateFin()|date(\"Y-M\") }}</small>
                                     <h3>{{ formation.getName() }}</h3>
                                     <h4>{{ formation.getLieu() }}</h4>
                                     
-
-                                    <p></p>
+                                  
+                                </div>
+                                </div>
                                 </div>
                             {% endfor %}
                             <!-- .experience-item -->

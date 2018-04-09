@@ -19,12 +19,13 @@ class DefaultController extends Controller
     {
         $forms=$this->getDoctrine()->getRepository("AppBundle:Formations")->findAll();
         $loisirs=$this->getDoctrine()->getRepository("AppBundle:Loisirs")->findAll();
-       
+        $experiences=$this->getDoctrine()->getRepository("AppBundle:Experiences")->findAll();
         return array(
        'name' => $name,
        'firstname' => $firstname,
        'Formations' => $forms,
        'Loisirs' => $loisirs,
+       'Experiences'=>$experiences,
        );
     }
     /**

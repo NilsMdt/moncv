@@ -329,6 +329,102 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        elseif (0 === strpos($pathinfo, '/experiences')) {
+            if (0 === strpos($pathinfo, '/experiences/create')) {
+                // create_experience
+                if ('/experiences/create' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\ExperienceController::createAction',  '_route' => 'create_experience',);
+                }
+
+                // validate_create_experience
+                if ('/experiences/create_valid' === $pathinfo) {
+                    $ret = array (  '_controller' => 'AppBundle\\Controller\\ExperienceController::validateExperienceAction',  '_route' => 'validate_create_experience',);
+                    if (!in_array($requestMethod, array('POST'))) {
+                        $allow = array_merge($allow, array('POST'));
+                        goto not_validate_create_experience;
+                    }
+
+                    return $ret;
+                }
+                not_validate_create_experience:
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/experiences/edit')) {
+                // edit_experience
+                if (preg_match('#^/experiences/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'edit_experience')), array (  '_controller' => 'AppBundle\\Controller\\ExperienceController::editAction',));
+                }
+
+                // validate_edit_experience
+                if (0 === strpos($pathinfo, '/experiences/edit_valid') && preg_match('#^/experiences/edit_valid/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'validate_edit_experience')), array (  '_controller' => 'AppBundle\\Controller\\ExperienceController::validateEditExperienceAction',));
+                    if (!in_array($requestMethod, array('POST'))) {
+                        $allow = array_merge($allow, array('POST'));
+                        goto not_validate_edit_experience;
+                    }
+
+                    return $ret;
+                }
+                not_validate_edit_experience:
+
+            }
+
+            // remove_experience
+            if (0 === strpos($pathinfo, '/experiences/remove') && preg_match('#^/experiences/remove/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'remove_experience')), array (  '_controller' => 'AppBundle\\Controller\\ExperienceController::removeAction',));
+            }
+
+        }
+
+        elseif (0 === strpos($pathinfo, '/formations')) {
+            if (0 === strpos($pathinfo, '/formations/create')) {
+                // create_formation
+                if ('/formations/create' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\FormationController::createAction',  '_route' => 'create_formation',);
+                }
+
+                // validate_create_formation
+                if ('/formations/create_valid' === $pathinfo) {
+                    $ret = array (  '_controller' => 'AppBundle\\Controller\\FormationController::validateFormationAction',  '_route' => 'validate_create_formation',);
+                    if (!in_array($requestMethod, array('POST'))) {
+                        $allow = array_merge($allow, array('POST'));
+                        goto not_validate_create_formation;
+                    }
+
+                    return $ret;
+                }
+                not_validate_create_formation:
+
+            }
+
+            elseif (0 === strpos($pathinfo, '/formations/edit')) {
+                // edit_formation
+                if (preg_match('#^/formations/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'edit_formation')), array (  '_controller' => 'AppBundle\\Controller\\FormationController::editAction',));
+                }
+
+                // validate_edit_formation
+                if (0 === strpos($pathinfo, '/formations/edit_valid') && preg_match('#^/formations/edit_valid/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    $ret = $this->mergeDefaults(array_replace($matches, array('_route' => 'validate_edit_formation')), array (  '_controller' => 'AppBundle\\Controller\\FormationController::validateEditFormationAction',));
+                    if (!in_array($requestMethod, array('POST'))) {
+                        $allow = array_merge($allow, array('POST'));
+                        goto not_validate_edit_formation;
+                    }
+
+                    return $ret;
+                }
+                not_validate_edit_formation:
+
+            }
+
+            // remove_formation
+            if (0 === strpos($pathinfo, '/formations/remove') && preg_match('#^/formations/remove/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'remove_formation')), array (  '_controller' => 'AppBundle\\Controller\\FormationController::removeAction',));
+            }
+
+        }
+
         elseif (0 === strpos($pathinfo, '/loisirs')) {
             if (0 === strpos($pathinfo, '/loisirs/create')) {
                 // create_loisir

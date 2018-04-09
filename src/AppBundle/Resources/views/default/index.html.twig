@@ -342,58 +342,34 @@
     <section class="section-wrapper section-experience">
         <div class="container">
             <div class="row">
+                
                 <div class="col-md-3">
                     <div class="section-title"><h2>Experiences</h2></div>
+                    <a href="{{path('create_experience')}}">Ajouter une experience</a>
                 </div>
                 <div class="col-md-9">
-                    <div class="row">
+                    {% for exp in Experiences %}
+                    <div class="profile-item">
+                                <div class="media">
+                       <div class="row">
                         <div class="col-md-6">
-                            <div class="content-item">
-                                <small>2015 - Present</small>
-                                <h3>Senior Developer</h3>
-                                <h4>Computer & Motor Ltd.</h4>
+                            <a href="{{path('edit_experience', {'id': exp.id })}}">Modifier</a> |
+                                    <a href="{{path('remove_experience', {'id': exp.id })}}">Supprimer</a>
+                                <div class="content-item">
+                                    <small>{{ exp.getDateDebut()|date("Y-M") }} - {{ exp.getDateFin()|date("Y-M") }}</small>
+                                    <h3>{{ exp.getName() }}</h3>
+                                    <h4>{{ exp.getLieu() }}</h4>
+                                    
 
-                                <p>United Kingdom, London</p>
-                            </div>
-                            
-                         
-                            
-                            <!-- .experience-item -->
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="content-item">
-                                <small>2012 - 2015</small>
-                                <h3>Webdesigner</h3>
-                                <h4>BizzNiss</h4>
-
-                                <p>United Kingdom, London</p>
-                            </div>
-                            <!-- .experience-item -->
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <div class="content-item">
-                                <small>2012 - 2015</small>
-                                <h3>Web Developer</h3>
-                                <h4>Unique Soft</h4>
-
-                                <p>United Kingdom, London</p>
-                            </div>
-                            <!-- .experience-item -->
-                        </div>
-                        <div class="col-md-6">
-                            <div class="content-item">
-                                <small>2010 - 2012</small>
-                                <h3>Front-end Developer</h3>
-                                <h4>Somsom LLC</h4>
-
-                                <p>United Kingdom, London</p>
-                            </div>
-                            <!-- .experience-item -->
-                        </div>
+                                    <p></p>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                            {% endfor %}
+                 
+                           
                     </div>
                 </div>
                 <!--.row-->
@@ -408,19 +384,27 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="section-title"><h2>Formations</h2></div>
+                     <a href="{{path('create_formation')}}">Ajouter une formation</a>
                 </div>
 
                  <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-12">
                             {% for formation in Formations %}
-                                <div class="content-item">
-                                    <small>{{ formation.getDateDebut()|date("Y") }} - {{ formation.getDateFin()|date("Y") }}</small>
+                            <div class="content-item">
+                                    <div class="profile-item">
+                             <a href="{{path('edit_formation', {'id': formation.id })}}">Modifier</a> |
+                                    <a href="{{path('remove_formation', {'id': formation.id })}}">Supprimer</a>
+                                
+                                <div class="media">
+                                    
+                                    <small>{{ formation.getDateDebut()|date("Y-M") }} - {{ formation.getDateFin()|date("Y-M") }}</small>
                                     <h3>{{ formation.getName() }}</h3>
                                     <h4>{{ formation.getLieu() }}</h4>
                                     
-
-                                    <p></p>
+                                  
+                                </div>
+                                </div>
                                 </div>
                             {% endfor %}
                             <!-- .experience-item -->
