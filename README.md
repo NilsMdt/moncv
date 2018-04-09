@@ -6,6 +6,10 @@ Ceci est mon CV en ligne !
 ![Capture2](/Capture2.JPG)
 ![Capture3](/Capture3.JPG)
 
+Il est possible d'ajouter, de modifier et de supprimer un élément (ici le loisir) que l'on souhaite.
+![Capture4](/Capture4.JPG)
+![Capture5](/Capture5.JPG)
+
 
 What's inside?
 --------------
