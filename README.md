@@ -3,7 +3,6 @@ Symfony Standard Edition
 
 Ceci est mon CV en ligne ! 
 
-![alt text](http://NilsMdt/moncv/Capture 1.jpeg)
 
 What's inside?
 --------------
